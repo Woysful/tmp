@@ -1,0 +1,586 @@
+.playlists-iframe {
+    position: relative;
+}
+/* ============================================================
+   PLAYLIST PLAYER — Modern Dark Theme
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --pl-bg:          #0d0d0f;
+  --pl-surface:     #1f1f27;
+  --pl-border:      rgba(255,255,255,0.07);
+  --pl-accent:      #91b6c9;
+  --pl-accent-glow: rgba(79,110,247,0.3);
+  --pl-text:        #c8c8d4;
+  --pl-hover:       #26262f;
+  --pl-radius:      8px;
+  --pl-radius-lg:   12px;
+  --pl-font:        'Nunito', 'Segoe UI', sans-serif;
+  --pl-tr:          0.16s ease;
+}
+
+.playlists-ajax:not(.pl-ready) .playlists-player {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.playlists-videos .playlists-items li {
+  display: none;
+}
+.playlists-videos .playlists-items li.pl-vis {
+  display: flex;
+}
+
+.playlists-lists .playlists-items + .playlists-items li,
+.playlists-lists .playlists-items ~ .playlists-items li {
+  display: none;
+}
+.playlists-lists .playlists-items + .playlists-items li.pl-vis,
+.playlists-lists .playlists-items ~ .playlists-items li.pl-vis {
+  display: inline-block;
+  line-height: 34px;
+}
+
+/* ============================================================
+   WRAPPER
+   ============================================================ */
+.playlists-ajax  { font-family: var(--pl-font); }
+
+.playlists-player {
+  background: var(--pl-bg);
+  color: var(--pl-text);
+  border-radius: var(--pl-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--pl-border);
+}
+
+/* ============================================================
+   LISTS (рядки табів)
+   ============================================================ */
+.playlists-lists {
+  padding: 6px 6px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ============================================================
+   SCROLLER
+   ============================================================ */
+.playlists-items {
+  position: relative;
+}
+
+.playlists-items ul {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  user-select: none;
+  touch-action: pan-x;
+  will-change: scroll-position;
+  -webkit-transform: translateZ(0);
+}
+.playlists-items ul::-webkit-scrollbar { display: none; }
+
+.playlists-items ul.pl-drag {
+  cursor: grabbing !important;
+  scroll-snap-type: none;
+}
+
+/* ============================================================
+   TAB PILLS
+   ============================================================ */
+.playlists-lists .playlists-items:first-child li {
+  display: inline-block !important;
+  line-height: 34px;
+}
+
+.playlists-lists .playlists-items li {
+  flex-shrink: 0;
+  height: 34px;
+  padding: 0 14px;
+  background: var(--pl-surface);
+  border: 1px solid var(--pl-border);
+  border-radius: 6px;
+  font-family: var(--pl-font);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--pl-text);
+  line-height: 34px;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--pl-tr), border-color var(--pl-tr),
+              color var(--pl-tr), transform var(--pl-tr);
+}
+.playlists-lists .playlists-items li:hover {
+  background: var(--pl-hover);
+  border-color: rgba(79,110,247,0.4);
+  color: #fff;
+ 
+}
+.playlists-lists .playlists-items li.active {
+  background: var(--pl-accent);
+  border-color: var(--pl-accent);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 12px var(--pl-accent-glow);
+}
+
+/* ============================================================
+   IFRAME
+   ============================================================ */
+.playlists-iframe {
+  height: 400px;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+  margin: 6px;
+  border-radius: var(--pl-radius);
+}
+.playlists-iframe iframe {
+  width: 100%; height: 100%;
+  border: none; display: block;
+}
+
+/* ============================================================
+   EPISODE CARDS
+   ============================================================ */
+.playlists-videos { padding: 0 6px 6px; }
+.playlists-videos .playlists-items li {
+  flex-shrink: 0;
+  width: 130px;
+  height: 44px;
+  background: var(--pl-surface);
+  border: 1px solid var(--pl-border);
+  border-radius: var(--pl-radius);
+  font-family: var(--pl-font);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--pl-text);
+  padding: 0 36px 0 12px;
+  box-sizing: border-box;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--pl-tr), border-color var(--pl-tr),
+              color var(--pl-tr), transform var(--pl-tr), box-shadow var(--pl-tr);
+}
+.playlists-videos .playlists-items li.pl-vis { display: flex; }
+.playlists-videos .playlists-items li:hover {
+  background: var(--pl-hover);
+  border-color: rgba(79,110,247,0.4);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+}
+.playlists-videos .playlists-items li.active {
+  background: linear-gradient(135deg, #91b6c9 0%, #5f8fa8 45%, #3f6478 100%);
+  border-color: #8eb8cc;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 16px var(--pl-accent-glow), 0 4px 12px rgba(0,0,0,0.4);
+
+}
+
+/* ============================================================
+   FIX 3: СТРІЛКИ — видимі ТІЛЬКИ коли є що скролити
+   Клас .pl-scroll додається JS коли scrollWidth > clientWidth
+   ============================================================ */
+.playlists-prev,
+.playlists-next {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 36px;
+  z-index: 10;
+  display: none; 
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.6;
+  border-radius: var(--pl-radius);
+  transition: opacity var(--pl-tr), background var(--pl-tr);
+  pointer-events: none;
+}
+.playlists-items.pl-scroll .playlists-prev,
+.playlists-items.pl-scroll .playlists-next {
+  display: flex;
+  pointer-events: auto;
+}
+.playlists-prev { left: 0; }
+.playlists-next { right: 0; }
+.playlists-prev:hover, .playlists-next:hover {
+  opacity: 1;
+  background: rgba(79,110,247,0.18);
+}
+.playlists-prev::after, .playlists-next::after {
+  content: '';
+  display: block;
+  width: 20px; height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+}
+.playlists-prev::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'/%3E%3C/svg%3E");
+}
+.playlists-next::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E");
+}
+.playlists-prev.pl-edge,
+.playlists-next.pl-edge {
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* ============================================================
+   WATCH ICON
+   ============================================================ */
+.playlists-view {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.25;
+  transition: opacity var(--pl-tr);
+  cursor: pointer;
+}
+.playlists-view::after {
+  content: '';
+  display: block;
+  width: 16px; height: 16px;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAABJ0lEQVQ4jeXUsUqcURQE4NmAzWZ18QWEBdFYSLRNEbASAmmFdBYJSB4hvYXY21rkAUQbfQ5DQiAIS0gRUGMjrFrkS7H/wvJzfzcBKzPlmblzOecMJ/nv0GoiMJVkPcnzJL2q3E9ymuSk1Wrd/dUPaGMb55pxiR10Jpm9QL/B4KJQ/46XTWavMag9OMbCmGYeRzXNLTbqZku4rglPKm4ab/EO3ap2WNMOsDwye4rPhXaeoYOvY7UzdNEr6L+gHXwskFfVZ5sFbqvifha4/SdjkXgItIMV3DxAy98wM5rj+4JgtJSOyUu5wWp903sF02MsTojNHd4UB4APhrmqoynYP7B271QNM3nQYDzCL+xiuv7+vuMwm+RVkvkkc0l+Z3gcPuVfjsPjxx+UKYwH8JKOawAAAABJRU5ErkJggg==');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.playlists-view:hover  { opacity: 0.65; }
+.playlists-view.watched { opacity: 1; }
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+
+.ep-progress-bar {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+
+  background: linear-gradient(90deg,
+    rgba(79,110,247,0.28) 0%,
+    rgba(79,110,247,0.10) 100%
+  );
+  border-right: 2px solid rgb(255 255 255 / 30%);
+  border-radius: var(--pl-radius) 0 0 var(--pl-radius);
+  pointer-events: none;
+  transition: width 5s linear;
+  z-index: 1;
+}
+
+.ep-progress-bar::after {
+  content: attr(data-pct);
+  position: absolute;
+  bottom: 3px;
+  right: 5px;
+  font-size: 9px;
+  font-weight: 700;
+  color: rgb(255 255 255 / 50%);
+  line-height: 1;
+  font-family: var(--pl-font);
+  letter-spacing: 0.03em;
+}
+
+/* ============================================================
+   RESUME HINT
+   ============================================================ */
+.progress-resume-hint {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 24px);
+  max-width: 480px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(13,13,15,0.96);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: var(--pl-radius-lg);
+  border: 1px solid var(--pl-accent);
+  box-shadow: 0 4px 24px var(--pl-accent-glow);
+  font-family: var(--pl-font);
+  font-size: 13px;
+  z-index: 999;
+  box-sizing: border-box;
+}
+.prh-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.prh-icon { font-size: 20px; flex-shrink: 0; }
+.prh-label { font-size: 10px; letter-spacing: .08em; color: #7c9bff; margin-bottom: 3px; font-weight: 700; }
+.prh-time  { font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.prh-time b { color: #7c9bff; }
+.prh-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0; 
+}
+.prh-actions button {
+  border: none; border-radius: 7px; padding: 7px 12px;
+  cursor: pointer; font-size: 12px; font-weight: 700;
+  font-family: var(--pl-font); white-space: nowrap;
+  transition: background var(--pl-tr);
+  flex: none;
+}
+.resume-hint-yes { background: var(--pl-accent); color: #fff; }
+.resume-hint-yes:hover { background: #3a55d4; }
+.resume-hint-no  { background: rgba(255,255,255,0.08); color: #aaa; border: 1px solid rgba(255,255,255,0.15) !important; }
+.resume-hint-no:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+/* ============================================================
+   NEXT EPISODE COUNTDOWN
+   ============================================================ */
+.next-episode-countdown {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 24px);
+  max-width: 320px;
+  background: rgba(13,13,15,0.95);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: var(--pl-radius-lg);
+  border: 1px solid var(--pl-accent);
+  box-shadow: 0 4px 24px var(--pl-accent-glow);
+  font-family: var(--pl-font);
+  font-size: 13px;
+  z-index: 999;
+  box-sizing: border-box;
+}
+.nec-label    { font-size: 10px; letter-spacing: .08em; color: #7c9bff; margin-bottom: 6px; font-weight: 700; }
+.nec-title    { font-weight: 800; margin-bottom: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nec-bar-wrap { background: #1f1f27; border-radius: 4px; height: 4px; margin-bottom: 10px; overflow: hidden; }
+.nec-bar      { height: 4px; width: 100%; background: var(--pl-accent); transition: width 5s linear; }
+.nec-actions  { display: flex; gap: 8px; margin-bottom: 8px; }
+.nec-actions button {
+  border: none; border-radius: 7px; padding: 7px 10px;
+  cursor: pointer; font-size: 12px; font-weight: 800;
+  font-family: var(--pl-font); transition: background var(--pl-tr);
+}
+.cd-play   { flex: 1; background: var(--pl-accent); color: #fff; }
+.cd-play:hover { background: #3a55d4; }
+.cd-cancel { background: rgba(255,255,255,0.08); color: #aaa; border: 1px solid rgba(255,255,255,0.15) !important; }
+.nec-seconds { text-align: center; font-size: 11px; color: #5a5a72; }
+
+/* ============================================================
+   EPISODE NAME BADGE
+   ============================================================ */
+.episode-name {
+  display: none;
+  position: absolute;
+  top: 10px; left: 10px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 10;
+}
+.episode-name.active { display: inline-block; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+  .playlists-iframe { height: 260px; margin: 4px; }
+  .playlists-videos .playlists-items li { width: 110px; height: 40px; font-size: 11px; }
+  .playlists-lists  .playlists-items li { height: 30px; font-size: 11px; line-height: 30px!important; }
+
+  .progress-resume-hint {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .prh-actions {
+    flex-shrink: 1;
+  }
+
+  .prh-actions button {
+    flex: 1; 
+  }
+
+
+  .nec-toggle-label { font-size: 0; }
+  .nec-toggle-label::after {
+    content: 'Авто';
+    font-size: 9px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+}
+.nec-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.nec-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+/* Toggle */
+.nec-autonext-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.nec-autonext-toggle input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.nec-toggle-track {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    transition: background 0.25s;
+    display: block;
+}
+
+.nec-autonext-toggle input:checked + .nec-toggle-track {
+    background: #81be5d;
+}
+
+.nec-toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.25s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.nec-autonext-toggle input:checked ~ .nec-toggle-track .nec-toggle-thumb {
+    transform: translateX(16px);
+}
+
+.nec-toggle-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1;
+}
+
+/* ============================================================
+   NEXT SEASON COUNTDOWN — стилі з постером
+   Базові стилі успадковуються від .next-episode-countdown
+   ============================================================ */
+
+/* Фіолетовий колір — візуально відрізняється від countdown між серіями */
+.next-season-countdown .nec-label {
+    color: #c97bff;
+}
+.next-season-countdown {
+    border-color: rgba(180, 100, 255, 0.6);
+    box-shadow: 0 4px 24px rgba(150, 80, 255, 0.25);
+    padding: 0;
+    overflow: hidden;
+}
+.next-season-countdown .nec-bar {
+    background: linear-gradient(90deg, #c97bff, #8f4fd4);
+}
+
+
+.next-season-countdown.nsc-has-poster {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    max-width: 420px;
+}
+
+/* Обгортка постера */
+.nsc-poster-wrap {
+    flex-shrink: 0;
+    width: 90px;
+    overflow: hidden;
+    border-radius: 0;
+    position: relative;
+}
+
+.nsc-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Легкий blur на постері — виглядає кінематографічно */
+    filter: brightness(0.85);
+    transition: filter 0.3s ease;
+}
+
+.next-season-countdown.nsc-has-poster:hover .nsc-poster {
+    filter: brightness(1);
+}
+
+/* Контент праворуч від постера */
+.nsc-content {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Без постера — стандартний padding */
+.next-season-countdown:not(.nsc-has-poster) .nsc-content {
+    padding: 14px 18px;
+}
+
+/* ============================================================
+   Мобільний — постер зверху, контент знизу
+   ============================================================ */
+@media (max-width: 400px) {
+    .next-season-countdown.nsc-has-poster {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .nsc-poster-wrap {
+        width: 100%;
+        height: 100px;
+    }
+}

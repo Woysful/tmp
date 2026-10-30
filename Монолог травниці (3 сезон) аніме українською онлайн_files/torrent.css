@@ -1,0 +1,184 @@
+/* Tracker by MSW * start */
+.torrent {
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+.torrent img {
+    border: 0px!important; padding: 0px!important; margin: 0px!important;
+}
+
+.torrent .title {
+    height:50px;
+    clear:left;
+  }
+
+.torrent .title a {
+    color:#636363;
+    text-decoration:none;
+  }
+.torrent .title a:hover{
+    text-decoration:underline;
+  }
+
+.torrent .download, torrent .download a {
+    width:174px;
+    height:50px;
+    background:#6bba1d url('../img/tor_down_03.jpg') no-repeat top left;
+    text-decoration:none;
+    float:left;
+  }
+.torrent .info_d {
+    height:50px;
+    background:url('../img/tor_down_04.jpg') repeat-x;
+    color:#636363;
+    font-weight:bold;
+  }
+
+.torrent .info_d1 {
+    height:50px;
+    font-size:12px;
+    margin-left:180px;
+    padding-left:10px;
+    display:table-cell;
+    vertical-align:middle;
+  }
+
+.torrent .info_d1 span {
+    color:#000;
+    border-bottom: dashed 1px #000;
+  }
+.torrent .info_c {
+    background:#6bba1d url('../img/tor_down_06.jpg') no-repeat;
+    height:50px;
+    width:5px;
+    float:right;
+  }
+.torrent .cont {
+    background:url('../img/tor_down_21.jpg') no-repeat;
+    margin-left:25px;
+    padding:5px 10px;
+  }
+.torrent .cont a {
+    color:#666666;
+    text-decoration:none;
+  }
+.torrent .cont a:hover {
+    color:#222222;
+    text-decoration:underline;
+  }
+.torrent .cont .bord_a1 {
+    border-bottom:1px dashed #000;
+    padding:5px;
+  }
+.torrent .li_download {
+    background:#9f9c9c url('../img/tor_down_11.jpg') repeat-x top left;
+    padding:2px 5px;
+    margin-right:5px;
+    float:left;
+    color:#FFFFFF;
+    font-weight:bold;
+    margin-top:-2px;
+  }
+.torrent .li_download_a1 {
+    float:left;
+  }
+.torrent .li_download_a2 {
+    margin-left:100px;
+  }
+.torrent .li_distribute {
+    background:#028e02 url('../img/tor_down_14.jpg') repeat-x top left;
+    padding:2px 5px;
+    margin-right:5px;
+    float:left;
+    color:#FFFFFF;
+    font-weight:bold;
+    margin-top:-2px;
+  }
+.torrent .li_distribute_a1 {
+    float:left;
+  }
+.torrent .li_distribute_a2 {
+    margin-left:100px;
+  }
+.torrent .li_swing {
+    background:#9d2e22 url('../img/tor_down_16.jpg') repeat-x top left;
+    padding:2px 5px;
+    margin-right:5px;
+    float:left;
+    color:#FFFFFF;
+    font-weight:bold;
+    margin-top:-2px;
+  }
+.torrent .li_swing_a1 {
+    float:left;
+  }
+.torrent .li_swing_a2 {
+    margin-left:100px;
+  }
+.torrent .li_list_a3 {
+    padding:5px;
+  }
+.torrent .li_list {
+    background:#cecece url('../img/tor_down_18.jpg') repeat-x top left;
+    padding:2px 5px;
+    margin-right:5px;
+    float:left;
+    color:#8f8f8f;
+    margin-top:-2px;
+  }
+.torrent .li_list_a1 {
+    margin-left:110px;
+    border-left:#b4b4b4 solid 2px;
+    padding:0px 5px;
+    color:#6a6a6a;
+  }
+.torrent .li_distribute_m {
+    background:#028e02 url('../img/tor_down_14.jpg') repeat-x top left;
+    padding:2px 5px;
+    margin-right:5px;
+    color:#FFFFFF;
+    font-weight:bold;
+    margin-top:-2px;
+  }
+.torrent .li_swing_m {
+    background:#9d2e22 url('../img/tor_down_16.jpg') repeat-x top left;
+    padding:2px 5px;
+    margin-right:5px;
+    color:#FFFFFF;
+    font-weight:bold;
+    margin-top:-2px;
+  }
+.torrent .li_download_m {
+    background:#9f9c9c url('../img/tor_down_11.jpg') repeat-x top left;
+    padding:2px 5px;
+    margin-right:5px;
+    color:#FFFFFF;
+    font-weight:bold;
+    margin-top:-2px;
+  }
+
+.trackerFileTree .folder { font-weight: bold; padding-left: 18px; cursor: pointer; }
+.trackerFileTree .folder i { font-style: normal; font-weight: normal; cursor: default; }
+.trackerFileTree .next_folder { padding-left: 18px; }
+.trackerFileTree img { vertical-align: middle; border: 0px; padding: 0px; margin: 0px; }
+.trackerFileTree .folderOpen .next_folder { display: block; }
+.trackerFileTree .folderClose .next_folder { display: none; }
+.trackerFileTree .folderOpen { background: url('../img/folder_open.png') no-repeat; }
+.trackerFileTree .folderClose { background: url('../img/folder_close.png') no-repeat; }
+.trackerAllFolder { cursor: pointer; width: 16px; height: 16px; float: right; }
+.trackerAllFolder.implode { background: url('../img/folder_implode.png') no-repeat; }
+.trackerAllFolder.explode { background: url('../img/folder_explode.png') no-repeat; }
+
+.trackerShowLoading {
+    opacity: 0.6;
+    filter: alpha(Opacity=60);
+    position: absolute;
+    background: #bbb;
+    color:#000;
+    font-weight:bold;
+    font-size:30px;
+    display:table;
+}
+/* Tracker by MSW * stop */
